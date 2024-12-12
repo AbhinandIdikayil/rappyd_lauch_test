@@ -27,8 +27,8 @@ function RoadMapSection() {
         '',
     ]
     return (
-        <main className={`${navbar.pad_x} max-md:px-10`}>
-            <h2 className={`mb-24 flex  max-md::flex-col items-center justify-center`} style={{ ...heading }}>
+        <main className={`${navbar.pad_x} max-md:px-5`}>
+            <h2 className={`mb-24 flex  max-md:flex-col items-center justify-center`} style={{ ...heading }}>
                 Nfthub's
                 <span className='gradient-text capitalize ml-3'>
                     Roadmap
@@ -38,7 +38,11 @@ function RoadMapSection() {
 
                 {
                     arr?.map(elem => (
-                        <div style={{ border: '0.5px solid' }} className={` border-solid rounded-[32px] child-container flex flex-col gap-4  w-[${constants.width}] h-[${constants.height}] px-8 py-8`}>
+                        <div style={{ border: '0.5px solid' }} className={`relative border-solid rounded-[32px] child-container flex flex-col gap-4  w-[${constants.width}] h-[${constants.height}] px-8 py-8`}>
+                            <div className='rotate-45 font-bold absolute right-4 top-4 w-[50px] h-[50px] rounded-[25px] percentage_button leading-[20px]'>
+                                <h1 className='text-center text-[27px] mt-2'>0</h1>
+                                <h1 className='text-center'>%</h1>
+                            </div>
                             <span className='text-[16px] font-bold leading-4 uppercase'> phase 0 </span>
                             <h1 className='text-[32px] leading-8 font-bold capitalize'>heading</h1>
                             <p>

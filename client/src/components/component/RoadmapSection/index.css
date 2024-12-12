@@ -19,3 +19,6 @@
   }
 
 }
+.percentage_button {
+  background: linear-gradient(25deg, #2600FC 0%, #FF00EA 100%);
+}
