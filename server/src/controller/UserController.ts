@@ -56,4 +56,19 @@ export class UserController {
             next(error)
         }
     }
+
+    async logout(req: Request, res: Response, next: NextFunction) {
+        try {
+            console.log(req.cookies);
+            res.clearCookie('user');
+            // res.cookie('access_token', '', {
+            //     maxAge:1,
+            //     httpOnly:true,
+            //     sameSite:'none', secure:true
+            // });
+            return res.status(200).json({ message: 'Logout successfully', success: true });
+        } catch (error) {
+            next(error)
+        }
+    }
 }

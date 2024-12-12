@@ -12,3 +12,4 @@ const userController = new UserController(userService);
 
 userRouter.route('/login').post(userController.login.bind(userController));
 userRouter.route('/signup').post(userController.signup.bind(userController));
+userRouter.route('/logout').post(userController.logout.bind(userController));

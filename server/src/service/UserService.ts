@@ -14,6 +14,8 @@ export class UserService implements IService {
     }
 
     async signup_service(data: IUser): Promise<IUserModel> {
+        const existingUser = await this.userRepository.findOneByEmail({email:data.email});
+        if(existingUser) throw ErrorResponse.badRequest('User already exist');
         const res = await this.userRepository.create(data)
         if (!res) {
             throw ErrorResponse.badRequest('Failed to signup');
