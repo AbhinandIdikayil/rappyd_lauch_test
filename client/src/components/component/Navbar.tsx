@@ -4,6 +4,7 @@ import NFTHub_logo from "./svg/NFTHub_logo"
 import SocialMedia from "./common/SocialMedia"
 import Navbar_mobile from "./Navbar_Mobile/Navbar_mobile"
 import { useRef } from "react"
+import { Link } from "react-router-dom"
 function Navbar() {
     const navbarRef = useRef<HTMLElement | null>();
     const toggleNavbar = () => {
@@ -28,9 +29,14 @@ function Navbar() {
                     </div>
                     <div className="max-md:hidden">
                         {
-                            navbar.topCenter?.map(elem => (
-                                <span style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> {elem} </span>
-                            ))
+                            navbar.topCenter?.map((elem: string) => {
+                                return elem.includes('Signin') ? (
+                                    <Link  style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 " to={'/login'}> {elem} </Link>
+                                ) : (
+                                    <span style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> {elem} </span>
+                                )
+                            }
+                            )
                         }
                     </div>
                     <div className="flex gap-2 items-center">

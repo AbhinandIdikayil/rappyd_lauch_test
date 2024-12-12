@@ -7,9 +7,7 @@ import Divider from '@/components/component/svg/Divider'
 function Home() {
     return (
         <>
-            <div className='h-[80px]'>
-
-            </div>
+          
             <Hero />
             <div className='flex items-center justify-center mt-28 mb-28'>
                 <Divider />

@@ -3,7 +3,7 @@ import NFTHub_logo from "../svg/NFTHub_logo"
 
 function Footer() {
   return (
-    <div className={`bg-background ${navbar.pad_x} ${footer.pad_y} ${footer.pad_b} max-lg:px-10`}>
+    <div className={`bg-background ${navbar.pad_x} ${footer.pad_y} ${footer.pad_b} ${footer.mt_t} max-lg:px-10`}>
       <footer className="flex max-md:flex-col justify-between items-center">
 
 

@@ -6,6 +6,9 @@ function Layout() {
     return (
         <>
             <Navbar />
+            <div className='h-[80px]'>
+
+            </div>
             <Outlet />
             <Footer />
         </>
