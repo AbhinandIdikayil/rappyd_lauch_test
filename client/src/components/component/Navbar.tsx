@@ -21,9 +21,9 @@ function Navbar() {
         }
     };
 
-    function logoutUser() {
+    async function logoutUser() {
         try {
-            dispatch(Logout()).unwrap();
+            await dispatch(Logout()).unwrap();
             return navigate('/login');
         } catch (error) {
             console.log(error);
@@ -32,7 +32,7 @@ function Navbar() {
 
     return (
         <>
-            <nav ref={navbarRef} style={{ zIndex: 99 }} className="lg:hidden w-full z-30 bg-black fixed grid content-start gap-20 grid-cols-3 p-4 inset-y-0 left-0 
+            <nav ref={navbarRef} style={{ zIndex: 99 }} className="lg:hidden w-full z-30 bg-background fixed grid content-start gap-20 grid-cols-3 p-4 inset-y-0 left-0 
                 transform  transition-transform duration-300 ease-in-out lg:relative lg:w-auto lg:translate-x-0 
                 translate-x-[100%]">
                 <Navbar_mobile ref={navbarRef} />
@@ -53,8 +53,13 @@ function Navbar() {
                             user.user ? (
                                 <>
                                     <span onClick={logoutUser} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> logout </span>
-                                    
-                                    <Link to={'/dashboard'} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> Dashboard </Link>
+                                    {
+                                        user.user?.role == 'Student' ? (
+                                            <Link to={'/dashboard/student'} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> Dashboard </Link>
+                                        ) : (
+                                            <Link to={'/dashboard/teacher'} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> Dashboard </Link>
+                                        )
+                                    }
                                 </>
                             ) : (
                                 <Link style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 " to={'/login'}> Sign-in </Link>

@@ -1,0 +1,33 @@
+
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 367px;
+}
+.gradient {
+    background: linear-gradient(90deg, #530cce, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.artist-child:nth-child(1) {
+    margin-top: 30px;
+}
+.artist-child:nth-child(3) {
+    margin-top: 30px;
+}
+
+
+@media (max-width: 1024px) {
+    .artist-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 317px;
+    }
+
+    .artist-child:nth-child(1) {
+        margin-top: 0px;
+    }
+    .artist-child:nth-child(3) {
+        margin-top: 0px;
+    }
+  }

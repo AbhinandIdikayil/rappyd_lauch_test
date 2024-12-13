@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { login, Logout, Register } from '../action'
+import { IRole } from '@/constants/enum'
 interface User {
     name: string,
-    email: string
+    email: string,
+    role: IRole
 }
 interface IState {
     user: User | null
@@ -23,7 +25,7 @@ const userSlice = createSlice({
             state.user = null
         })
         builder.addCase(Register.fulfilled, (state, { payload }) => {
-            state.user = payload
+            state.user = payload.data
         })
         builder.addCase(Register.rejected, (state) => {
             state.user = null
@@ -32,7 +34,7 @@ const userSlice = createSlice({
             state.user = null
         })
         builder.addCase(login.fulfilled, (state, { payload }) => {
-            state.user = payload
+            state.user = payload.data
         })
         builder.addCase(login.rejected, (state) => {
             state.user = null

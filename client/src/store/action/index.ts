@@ -17,7 +17,6 @@ export const Register = createAsyncThunk(
     async (req: IRegister, { rejectWithValue }) => {
         try {
             const { data } = await AXIOS_INSTANCE.post('/signup', { data: req });
-            console.log(data)
             return data
         } catch (error) {
             if (error instanceof AxiosError && error.response) {

@@ -1,7 +1,7 @@
 import { navbar } from "@/constants/navbar"
-import image_01 from '../../../../public/image_1.png'
-import image_02 from '../../../../public/image_2.png'
-import image_03 from '../../../../public/image_3.png'
+import image_01 from '/public/image_1.png'
+import image_02 from '/public/image_2.png'
+import image_03 from '/public/image_3.png'
 import { Link } from "react-router-dom"
 import './index.css'
 import { MoveUpRight } from "lucide-react"
@@ -9,9 +9,9 @@ import { MoveUpRight } from "lucide-react"
 function HowItWorks() {
     return (
         <main className={`${navbar.pad_x} w-full max-lg:px-10`}>
-            <h2 className="text-center font-bold max-md:text-[42px] max-md:leading-[42px]">
+            <h2 className="text-center font-bold text-[64px] leading-[64px] max-md:text-[42px] max-md:leading-[42px]">
                 How it
-                <span className="index">
+                <span className="index ml-3">
                     works!
                 </span>
             </h2>

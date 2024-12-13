@@ -1,5 +1,6 @@
 import { navbar } from '@/constants/navbar'
 import './index.css'
+import CheckMarkIcon from '../svg/Check-mark-icon'
 
 function RoadMapSection() {
     const constants = {
@@ -20,11 +21,24 @@ function RoadMapSection() {
         textDecorationSkipInk: "none",
     }
     const arr = [
-        '',
-        '',
-        '',
-        '',
-        '',
+        {
+            heading:'Planning'
+        },
+        {
+            heading:'Production'
+        },
+        {
+            heading:'Launch'
+        },
+        {
+            heading:'Minting'
+        },
+        {
+            heading:'New ntfs'
+        },
+        {
+            heading:'Metaverse'
+        },
     ]
     return (
         <main className={`${navbar.pad_x} max-md:px-5`}>
@@ -37,14 +51,14 @@ function RoadMapSection() {
             <div className='container' >
 
                 {
-                    arr?.map(elem => (
+                    arr?.map((elem, index) => (
                         <div style={{ border: '0.5px solid' }} className={`relative border-solid rounded-[32px] child-container flex flex-col gap-4  w-[${constants.width}] h-[${constants.height}] px-8 py-8`}>
                             <div className='rotate-45 font-bold absolute right-4 top-4 w-[50px] h-[50px] rounded-[25px] percentage_button leading-[20px]'>
                                 <h1 className='text-center text-[27px] mt-2'>0</h1>
                                 <h1 className='text-center'>%</h1>
                             </div>
-                            <span className='text-[16px] font-bold leading-4 uppercase'> phase 0 </span>
-                            <h1 className='text-[32px] leading-8 font-bold capitalize'>heading</h1>
+                            <span className='gradient-text text-[16px] font-bold leading-4 uppercase'> phase 0{index + 1} </span>
+                            <h1 className='text-[32px] leading-8 font-bold capitalize'> {elem?.heading} </h1>
                             <p>
                                 Quality comes first. we took our
                                 time to plan out everything and
@@ -54,9 +68,19 @@ function RoadMapSection() {
                             <div></div>
                             <hr />
                             <div></div>
-                            <span> Launch the project </span>
-                            <span> Launch the project </span>
-                            <span> Launch the project </span>
+                            <span className='flex gap-3'>
+                                <CheckMarkIcon />
+                                Launch the project
+                            </span>
+                            <span className='flex gap-3'>
+                                <CheckMarkIcon />
+                                Launch the project
+                            </span>
+                            <span className='flex gap-3'>
+                                <CheckMarkIcon />
+                                Launch the project
+                            </span>
+
                         </div>
                     ))
                 }
