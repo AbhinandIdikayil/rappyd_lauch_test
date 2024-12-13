@@ -1,18 +1,19 @@
 import { navbar } from '@/constants/navbar'
 import './index.css'
 import CheckMarkIcon from '../svg/Check-mark-icon'
+import React from 'react'
 
 function RoadMapSection() {
-    const constants = {
-        width: '416px',
-        height: "459px",
-        max_width: "456px",
-        left: "416px",
-        padding: "0px 24px 48px 24px",
-        gap: "0px",
-        opacity: "0px",
-    }
-    const heading = {
+    // const constants = {
+    //     width: '416px',
+    //     height: "459px",
+    //     max_width: "456px",
+    //     left: "416px",
+    //     padding: "0px 24px 48px 24px",
+    //     gap: "0px",
+    //     opacity: "0px",
+    // }
+    const heading:React.CSSProperties = {
         fontSize: "64px",
         fontWeight: "700",
         lineHeight: "64px",

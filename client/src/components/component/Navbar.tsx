@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/store/store"
 import { Logout } from "@/store/action"
 function Navbar() {
-    const navbarRef = useRef<HTMLElement | null>();
+    const navbarRef = useRef<HTMLElement | null>(null);
     const user = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate()

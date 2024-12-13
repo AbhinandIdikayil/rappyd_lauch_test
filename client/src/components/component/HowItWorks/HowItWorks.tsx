@@ -11,7 +11,7 @@ function HowItWorks() {
         <main className={`${navbar.pad_x} w-full max-lg:px-10`}>
             <h2 className="text-center font-bold text-[64px] leading-[64px] max-md:text-[42px] max-md:leading-[42px]">
                 How it
-                <span className="index ml-3">
+                <span className="index ml-3"> 
                     works!
                 </span>
             </h2>

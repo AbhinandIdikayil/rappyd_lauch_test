@@ -1,4 +1,4 @@
-import footerImage from '../../../../public/footer/footer.png'
+import footerImage from '/public/footer/footer.png'
 function FooterWithImage() {
     return (
         <div className={`relative max-md:h-[430px]`}>
