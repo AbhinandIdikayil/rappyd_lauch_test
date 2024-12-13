@@ -28,6 +28,8 @@ To run this project, you will need to add the following environment variables to
 ### Server
 `PORT` = `3000`
 
+`SECRET` = `SECERT KEY FOR JWT`
+
 `MONGO_URI` = `MONGODB  CONNECTION STRING`
 
 `CLIENT` = `REACT APP URL`
