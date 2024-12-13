@@ -6,7 +6,7 @@ function RoadMapSection() {
     const constants = {
         width: '416px',
         height: "459px",
-        max_width: "416px",
+        max_width: "456px",
         left: "416px",
         padding: "0px 24px 48px 24px",
         gap: "0px",
@@ -22,22 +22,22 @@ function RoadMapSection() {
     }
     const arr = [
         {
-            heading:'Planning'
+            heading: 'Planning'
         },
         {
-            heading:'Production'
+            heading: 'Production'
         },
         {
-            heading:'Launch'
+            heading: 'Launch'
         },
         {
-            heading:'Minting'
+            heading: 'Minting'
         },
         {
-            heading:'New ntfs'
+            heading: 'New ntfs'
         },
         {
-            heading:'Metaverse'
+            heading: 'Metaverse'
         },
     ]
     return (
@@ -48,42 +48,46 @@ function RoadMapSection() {
                     Roadmap
                 </span>
             </h2>
-            <div className='container' >
-
-                {
-                    arr?.map((elem, index) => (
-                        <div style={{ border: '0.5px solid' }} className={`relative border-solid rounded-[32px] child-container flex flex-col gap-4  w-[${constants.width}] h-[${constants.height}] px-8 py-8`}>
-                            <div className='rotate-45 font-bold absolute right-4 top-4 w-[50px] h-[50px] rounded-[25px] percentage_button leading-[20px]'>
-                                <h1 className='text-center text-[27px] mt-2'>0</h1>
-                                <h1 className='text-center'>%</h1>
-                            </div>
-                            <span className='gradient-text text-[16px] font-bold leading-4 uppercase'> phase 0{index + 1} </span>
-                            <h1 className='text-[32px] leading-8 font-bold capitalize'> {elem?.heading} </h1>
-                            <p>
-                                Quality comes first. we took our
-                                time to plan out everything and
-                                build our production pipeline for
-                                a good quality artworks.
-                            </p>
-                            <div></div>
-                            <hr />
-                            <div></div>
-                            <span className='flex gap-3'>
-                                <CheckMarkIcon />
-                                Launch the project
-                            </span>
-                            <span className='flex gap-3'>
-                                <CheckMarkIcon />
-                                Launch the project
-                            </span>
-                            <span className='flex gap-3'>
-                                <CheckMarkIcon />
-                                Launch the project
-                            </span>
-
+            <div className="container">
+                {arr?.map((elem, index) => (
+                    <div
+                        key={index}
+                        style={{ border: '0.5px solid' }}
+                        className={`relative border-solid rounded-[32px] child-container 
+                            flex flex-col gap-4 w-full max-h-[459px] px-[30px] py-[21px]`}
+                    >
+                        <div
+                            className="rotate-45 font-bold absolute right-4 top-4 w-[50px] h-[50px] 
+                    rounded-[25px] percentage_button leading-[20px] overflow-hidden flex items-center justify-center"
+                        >
+                            <h1 className="text-center text-[27px]">0</h1>
+                            <h1 className="text-center">%</h1>
                         </div>
-                    ))
-                }
+                        <span className="gradient-text text-[16px] font-bold leading-4 uppercase">
+                            phase 0{index + 1}
+                        </span>
+                        <h1 className="text-[32px] leading-8 font-bold capitalize">{elem?.heading}</h1>
+                        <p>
+                            Quality comes first. We took our time to plan everything and build our
+                            production pipeline for good-quality artworks.
+                        </p>
+                        <div />
+                        <hr />
+                        <div />
+                        <h1 className="flex gap-2">
+                            <CheckMarkIcon />
+                            Launch the project
+                        </h1>
+                        <h1 className="flex gap-3">
+                            <CheckMarkIcon />
+                            Grow community
+                        </h1>
+                        <h1 className="flex gap-3">
+                            <CheckMarkIcon />
+                            Release website and logo
+                        </h1>
+                    </div>
+                ))}
             </div>
         </main>
     )

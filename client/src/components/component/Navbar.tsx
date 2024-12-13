@@ -52,7 +52,7 @@ function Navbar() {
                         {
                             user.user ? (
                                 <>
-                                    <span onClick={logoutUser} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> logout </span>
+                                    <span onClick={logoutUser} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 hover:cursor-pointer"> logout </span>
                                     {
                                         user.user?.role == 'Student' ? (
                                             <Link to={'/dashboard/student'} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> Dashboard </Link>

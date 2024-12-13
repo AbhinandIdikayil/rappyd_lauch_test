@@ -20,6 +20,11 @@ const userSchema = new Schema<IUserModel>({
         type: String,
         required: true,
     },
+    role:{
+        type: String,
+        enum:Object.values(IRole),
+        required: true
+    },
     password: {
         type: String,
         required: true,

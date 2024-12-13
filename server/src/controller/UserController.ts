@@ -47,6 +47,7 @@ export class UserController {
                 console.log(validationErrors);
                 throw ErrorResponse.validationError("Validation failed", validationErrors);
             }
+            console.log(value);
             const result = await this.userService.signup_service(value);
             const token = generateToken(result._id)
             return res
