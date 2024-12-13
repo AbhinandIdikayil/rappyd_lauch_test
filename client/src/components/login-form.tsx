@@ -9,25 +9,39 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { login } from "@/store/action"
+import { AppDispatch } from "@/store/store"
 import { LoginFormSchema } from "@/utils/validation/login_validation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { LoaderIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 import { z } from "zod"
 
 export function LoginForm() {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   type formType = z.infer<typeof LoginFormSchema>;
-  const { register, handleSubmit, formState: { errors } } = useForm<formType>({
+  const { register, handleSubmit, formState: { errors, isSubmitting }, setError } = useForm<formType>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: '',
       password: ''
     }
   })
-  function onSubmit(data: formType) {
+  async function onSubmit(data: formType) {
     try {
       console.log(data);
-    } catch (error) {
+      await dispatch(login(data)).unwrap()
+      return navigate('/');
+    } catch (error: any) {
+      if (error?.message?.includes('password')) {
+        setError('password', { message: error.message })
+      }
+      if (error?.message?.includes('User')) {
+        setError('email', { message: error.message })
+      }
       console.log(error);
     }
   }
@@ -49,7 +63,7 @@ export function LoginForm() {
                   <span className="text-red-500 text-sm"> ( {errors?.email?.message} )</span>
                 )
               }
-              </Label>
+            </Label>
             <Input
               {...register('email')}
               id="email"
@@ -62,20 +76,29 @@ export function LoginForm() {
               <Label htmlFor="password">
                 Password
                 {
-                errors?.password?.message && (
-                  <span className="text-red-500 text-sm"> ( {errors?.password?.message} )</span>
-                )
-              }
-                </Label>
+                  errors?.password?.message && (
+                    <span className="text-red-500 text-sm"> ( {errors?.password?.message} )</span>
+                  )
+                }
+              </Label>
             </div>
             <Input
               id="password"
               {...register('password')}
               type="password" />
           </div>
-          <Button type="submit" className="w-full">
-            Login
-          </Button>
+          {
+            isSubmitting ? (
+              <button className="button-4 w-full flex items-center justify-center" role="button">
+                <LoaderIcon className='animate-spin' width={35} height={20} />
+              </button>
+            ) : (
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            )
+          }
+
         </form>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}

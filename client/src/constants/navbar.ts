@@ -1,6 +1,6 @@
 
 export const navbar = {
-    topCenter: ['Home', 'Signin', 'Choose', 'About', 'Roadmap', 'Blog'],
+    topCenter: ['Home', 'Choose', 'About', 'Roadmap', 'Blog'],
     pad_y: 'py-[10px] ',
     pad_x: 'px-[200px] '
 }

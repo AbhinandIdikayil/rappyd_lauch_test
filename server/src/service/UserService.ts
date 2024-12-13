@@ -9,8 +9,12 @@ export class UserService implements IService {
     constructor(private userRepository: IRepo) { }
 
     async login_service(data: { email: string, password: string }): Promise<IUserModel> {
-        const result = await this.userRepository.login(data);
-        return result;
+        const result = await this.userRepository.findOneByEmail({email:data.email});
+        if(!result) throw ErrorResponse.badRequest('User not found');
+        const matchPassword = await result?.matchPassword(data.password);
+        console.log(matchPassword);
+        if(!matchPassword) throw ErrorResponse.badRequest('Incorrect password');
+        return result.toObject();
     }
 
     async signup_service(data: IUser): Promise<IUserModel> {

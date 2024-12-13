@@ -4,9 +4,15 @@ import NFTHub_logo from "./svg/NFTHub_logo"
 import SocialMedia from "./common/SocialMedia"
 import Navbar_mobile from "./Navbar_Mobile/Navbar_mobile"
 import { useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "@/store/store"
+import { Logout } from "@/store/action"
 function Navbar() {
     const navbarRef = useRef<HTMLElement | null>();
+    const user = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate()
     const toggleNavbar = () => {
         if (navbarRef?.current) {
             if (navbarRef?.current.classList) {
@@ -14,6 +20,15 @@ function Navbar() {
             }
         }
     };
+
+    function logoutUser() {
+        try {
+            dispatch(Logout()).unwrap();
+            return navigate('/login');
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <>
@@ -29,15 +44,23 @@ function Navbar() {
                     </div>
                     <div className="max-md:hidden">
                         {
-                            navbar.topCenter?.map((elem: string) => {
-                                return elem.includes('Signin') ? (
-                                    <Link  style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 " to={'/login'}> {elem} </Link>
-                                ) : (
-                                    <span style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> {elem} </span>
-                                )
-                            }
+                            navbar.topCenter?.map((elem: string) => (
+                                <span style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> {elem} </span>
+                            )
                             )
                         }
+                        {
+                            user.user ? (
+                                <>
+                                    <span onClick={logoutUser} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> logout </span>
+                                    
+                                    <Link to={'/dashboard'} style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 "> Dashboard </Link>
+                                </>
+                            ) : (
+                                <Link style={{ fontWeight: '700', marginLeft: '20px' }} className="text-[14px] leading-4 " to={'/login'}> Sign-in </Link>
+                            )
+                        }
+
                     </div>
                     <div className="flex gap-2 items-center">
                         <SocialMedia />
@@ -54,7 +77,7 @@ function Navbar() {
 
                     </div>
                 </main>
-            </nav>
+            </nav >
 
         </>
     )

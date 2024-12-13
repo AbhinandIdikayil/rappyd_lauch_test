@@ -23,14 +23,14 @@ export class UserController {
                 console.log(validationErrors);
                 throw ErrorResponse.validationError("Validation failed", validationErrors);
             }
-            console.log(value)
             const result = await this.userService.login_service(value);
             const token = generateToken(result._id)
             return res
                 .cookie('user', token)
                 .status(200)
-                .json({ data: res, success: true })
+                .json({ data: result, success: true })
         } catch (error) {
+            console.log(error);
             next(error)
         }
     }

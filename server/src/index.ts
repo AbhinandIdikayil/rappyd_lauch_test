@@ -4,11 +4,13 @@ import { dbConnection } from './config/db.connection';
 import { userRouter } from './routes/routes';
 import { errorMiddleware } from './middlewares/ErrorMiddleware';
 import cookie from 'cookie-parser';
-
+import cors from 'cors'
+import { corsOption } from './config/cors_option';
 const app = express();
 
 app.use(cookie());
-app.use(express.json())
+app.use(cors(corsOption));
+app.use(express.json());
 app.use('/api/v1/user',userRouter);
 
 app.use(errorMiddleware)

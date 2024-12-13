@@ -15,11 +15,16 @@ import { z } from "zod"
 import { SignupFormSchema } from "@/utils/validation/signup_validation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { IRole } from "@/constants/enum"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/store/store"
+import { Register } from "@/store/action"
+import { LoaderIcon } from "lucide-react"
 
 function SignupForm() {
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate();
   type formType = z.infer<typeof SignupFormSchema>
-  const { register, handleSubmit, setError, formState: { errors } } = useForm<formType>({
+  const { register, handleSubmit, setError, setValue, formState: { errors, isSubmitting } } = useForm<formType>({
     resolver: zodResolver(SignupFormSchema),
     defaultValues: {
       name: '',
@@ -31,15 +36,19 @@ function SignupForm() {
   async function onSubmit(data: formType) {
     try {
       console.log(data)
-      // await dispatch(Register(data)).unwrap()
+      await dispatch(Register(data)).unwrap()
       return navigate('/')
-    } catch (error) {
+    } catch (error:any) {
       console.log(error);
-      // if (error instanceof AxiosError) {
-      //   if (error.response?.data) {
-      //     setError('email', error.response?.data)
-      //   }
-      // }
+      if (error?.message?.includes('password')) {
+        console.log('asfsdfpas')
+
+        setError('password', { message: error.message })
+      }
+      if (error?.message?.includes('exist')) {
+        console.log('asfsdf')
+        setError('name', { message: error.message })
+      }
     }
   }
   console.log(errors)
@@ -97,7 +106,7 @@ function SignupForm() {
             <div className="radio-wrapper-4">
               <input id="example-4"
                 type="radio"
-                {...register('role')}
+                onClick={() => setValue('role', IRole.Teacher)}
                 value={IRole.Teacher}
                 name="radio-examples"
               />
@@ -107,7 +116,7 @@ function SignupForm() {
               <input
                 id="example-4"
                 type="radio"
-                {...register('role')}
+                onClick={() => setValue('role', IRole.Student)}
                 value={IRole.Student}
                 name="radio-examples"
               />
@@ -129,9 +138,18 @@ function SignupForm() {
             </div>
             <Input id="password" type="password" {...register('password')} />
           </div>
-          <Button type="submit" className="w-full">
-            Login
-          </Button>
+          {
+            isSubmitting ? (
+              <button className="button-4 w-full flex items-center justify-center" role="button">
+                <LoaderIcon className='animate-spin' width={35} height={20} />
+              </button>
+            ) : (
+              <Button type="submit" className="w-full">
+                Signup
+              </Button>
+            )
+          }
+
         </form>
         <div className="mt-4 text-center text-sm">
           have an account?{" "}
